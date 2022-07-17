@@ -1,0 +1,10 @@
+SELECT 
+                       user_id,
+                       item_id,
+                       event_time,
+                       RANK( ) over (PARTITION BY user_id ORDER BY event_time DESC) as rank_num,
+                       ROW_NUMBER( ) over(PARTITION BY user_id ORDER BY event_time DESC) as row_number,
+                       DENSE_RANK( ) over(PARTITION BY user_id ORDER BY event_time DESC) as dense_rank
+                       
+FROM dsv1069.view_item_events
+          
